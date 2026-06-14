@@ -431,8 +431,116 @@
       font-size:.9rem;
     }
 
+
+    .formGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .formFull{grid-column:1 / -1}
+
+    label{
+      display:block;
+      color:#fff4dd;
+      font-weight:900;
+      margin-bottom:8px;
+    }
+
+    input, textarea, select{
+      width:100%;
+      border:1px solid var(--line);
+      background:rgba(230,220,200,.06);
+      color:var(--text);
+      border-radius:16px;
+      padding:13px 14px;
+      font:inherit;
+      outline:none;
+    }
+
+    input:focus, textarea:focus, select:focus{
+      border-color:rgba(211,38,48,.75);
+      box-shadow:0 0 0 4px rgba(211,38,48,.12);
+    }
+
+    textarea{min-height:128px;resize:vertical}
+
+    select option{
+      color:#111;
+      background:#f3ead8;
+    }
+
+    .fileInput{
+      border:1px dashed rgba(230,220,200,.35);
+      padding:16px;
+      background:rgba(230,220,200,.045);
+      border-radius:18px;
+    }
+
+    .fileInput small{
+      display:block;
+      margin-top:8px;
+      color:var(--muted);
+    }
+
+    .photoPreview{
+      width:160px;
+      height:160px;
+      border-radius:22px;
+      border:1px solid var(--line);
+      background:rgba(230,220,200,.055);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      color:var(--muted);
+      text-align:center;
+      margin-top:12px;
+      font-size:.88rem;
+    }
+
+    .photoPreview img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .actionBar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .statusBox{
+      margin-top:18px;
+      padding:14px 16px;
+      border-radius:16px;
+      background:rgba(230,220,200,.06);
+      border:1px solid var(--line);
+      color:var(--muted);
+    }
+
+    .summaryBox{
+      margin-top:22px;
+      padding:18px;
+      border-radius:18px;
+      background:rgba(0,0,0,.24);
+      border:1px solid var(--line);
+      white-space:pre-wrap;
+      color:#efe5d2;
+      font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size:.9rem;
+      display:none;
+    }
+
+    .smallWarn{
+      color:var(--muted);
+      font-size:.92rem;
+      margin-top:10px;
+    }
+
     @media(max-width:950px){
-      .heroGrid,.grid2,.mediaGrid,.footerGrid{grid-template-columns:1fr}
+      .heroGrid,.grid2,.mediaGrid,.footerGrid,.formGrid{grid-template-columns:1fr}
       .grid3,.services{grid-template-columns:1fr 1fr}
       .artistGrid,.partnerGrid{grid-template-columns:1fr 1fr}
       nav ul{display:none}
@@ -440,7 +548,7 @@
     }
 
     @media(max-width:620px){
-      .grid3,.services,.artistGrid,.partnerGrid,.photoWall{grid-template-columns:1fr}
+      .grid3,.services,.artistGrid,.partnerGrid,.photoWall,.formGrid{grid-template-columns:1fr}
       .sectionHead{display:block}
       section{padding:62px 0}
       .heroGrid{padding:52px 0}
@@ -469,6 +577,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#letifest">L’Étifest</a></li>
         <li><a href="#partenaires">Partenaires</a></li>
+        <li><a href="#fiche-band">Fiche band</a></li>
         <li><a href="#contact" class="cta">Nous contacter</a></li>
       </ul>
     </nav>
@@ -727,6 +836,128 @@
     </div>
   </section>
 
+
+  <section id="fiche-band">
+    <div class="wrap">
+      <div class="sectionHead">
+        <div>
+          <span class="pill">Fiche band officielle</span>
+          <h2>Soumettre un projet à L’Étiquette.</h2>
+        </div>
+        <p>
+          Formulaire simple pour centraliser les informations d’un band : membres, image, bio,
+          communiqué de presse, EP, liens et intention de collaboration.
+        </p>
+      </div>
+
+      <div class="card">
+        <form id="bandForm">
+          <div class="formGrid">
+            <div>
+              <label for="bandName">Nom du band *</label>
+              <input id="bandName" name="bandName" type="text" required placeholder="Ex. Nom du band">
+            </div>
+
+            <div>
+              <label for="contactEmail">Courriel de contact *</label>
+              <input id="contactEmail" name="contactEmail" type="email" required placeholder="exemple@courriel.com">
+            </div>
+
+            <div class="formFull">
+              <label for="members">Nom des membres *</label>
+              <textarea id="members" name="members" required placeholder="Nom, rôle / instrument. Exemple : Marie — voix, David — guitare, Alex — drums"></textarea>
+            </div>
+
+            <div>
+              <label for="style">Style musical</label>
+              <input id="style" name="style" type="text" placeholder="Rock, punk, métal, alternatif, etc.">
+            </div>
+
+            <div>
+              <label for="city">Ville / région</label>
+              <input id="city" name="city" type="text" placeholder="Montréal, Québec, Trois-Rivières, etc.">
+            </div>
+
+            <div class="formFull">
+              <label for="intention">Intention principale *</label>
+              <select id="intention" name="intention" required>
+                <option value="">Choisir une intention</option>
+                <option value="Accompagnement artistique">1. Accompagnement artistique</option>
+                <option value="Trouver un show">2. Trouver un show</option>
+                <option value="Trouver un festival">3. Trouver un festival</option>
+                <option value="Couverture événementielle">4. Couverture événementielle</option>
+              </select>
+            </div>
+
+            <div class="formFull">
+              <label for="photoProfil">Téléverser une photo de profil PNG</label>
+              <div class="fileInput">
+                <input id="photoProfil" name="photoProfil" type="file" accept="image/png,image/jpeg,image/webp">
+                <small>Format recommandé : PNG carré ou horizontal, bonne résolution. La photo s’affiche dans la fiche PDF.</small>
+                <div class="photoPreview" id="photoPreview">Aperçu photo</div>
+              </div>
+            </div>
+
+            <div class="formFull">
+              <label for="shortBio">Bio courte *</label>
+              <textarea id="shortBio" name="shortBio" required placeholder="Présentation courte du band, style, énergie, parcours, ville, mission artistique."></textarea>
+            </div>
+
+            <div class="formFull">
+              <label for="pressRelease">Communiqué de presse</label>
+              <textarea id="pressRelease" name="pressRelease" placeholder="Coller ici le communiqué ou le texte officiel de lancement."></textarea>
+            </div>
+
+            <div>
+              <label for="epLink">EP / album / démo</label>
+              <input id="epLink" name="epLink" type="url" placeholder="Lien Spotify, Bandcamp, SoundCloud, YouTube, Drive, etc.">
+            </div>
+
+            <div>
+              <label for="contentLinks">Liens vers les contenus</label>
+              <input id="contentLinks" name="contentLinks" type="text" placeholder="Facebook, Instagram, TikTok, YouTube, site web, EPK, etc.">
+            </div>
+
+            <div class="formFull">
+              <label for="technicalNotes">Notes techniques / besoins</label>
+              <textarea id="technicalNotes" name="technicalNotes" placeholder="Backline, nombre de musiciens, besoins scène, disponibilité, objectifs, détails importants."></textarea>
+            </div>
+
+            <div class="formFull">
+              <label for="attachments">Attacher une photo ou fichiers en pièce jointe</label>
+              <div class="fileInput">
+                <input id="attachments" name="attachments" type="file" multiple accept="image/*,.pdf,.doc,.docx,.mp3,.wav,.zip">
+                <small>
+                  Utiliser ce bouton pour préparer les fichiers à envoyer avec le courriel : photo, communiqué PDF,
+                  EPK, fichiers audio ou dossier compressé.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="actionBar">
+            <button class="button primary" type="button" id="downloadPdfBtn">Télécharger PDF</button>
+            <button class="button" type="button" id="previewBtn">Voir la fiche technique</button>
+            <button class="button cream" type="button" id="emailBtn">Envoyer la fiche par courriel</button>
+            <button class="button" type="reset" id="resetBtn">Effacer</button>
+          </div>
+
+          <p class="smallWarn">
+            Note technique : un site HTML seul peut générer le PDF et préparer le courriel. Pour envoyer automatiquement
+            les pièces jointes sans action humaine, il faut ajouter un serveur, une base de données ou un service courriel sécurisé.
+          </p>
+
+          <div class="statusBox" id="statusBox">
+            Remplis la fiche, télécharge le PDF, puis utilise le bouton courriel pour envoyer le dossier à L’Étiquette.
+          </div>
+
+          <pre class="summaryBox" id="summaryBox"></pre>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
   <section id="contact">
     <div class="wrap">
       <div class="sectionHead">
@@ -786,6 +1017,7 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
   const links = [...document.querySelectorAll('nav a[href^="#"]')];
   const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
@@ -802,6 +1034,223 @@
   }
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
+
+  const bandForm = document.getElementById('bandForm');
+  const photoInput = document.getElementById('photoProfil');
+  const photoPreview = document.getElementById('photoPreview');
+  const summaryBox = document.getElementById('summaryBox');
+  const statusBox = document.getElementById('statusBox');
+
+  let photoDataUrl = "";
+
+  function cleanFileName(value){
+    return (value || "fiche-band")
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-zA-Z0-9-_]+/g, "-")
+      .replace(/-+/g, "-")
+      .replace(/^-|-$/g, "")
+      .toLowerCase();
+  }
+
+  function getFormData(){
+    return {
+      bandName: document.getElementById('bandName').value.trim(),
+      contactEmail: document.getElementById('contactEmail').value.trim(),
+      members: document.getElementById('members').value.trim(),
+      style: document.getElementById('style').value.trim(),
+      city: document.getElementById('city').value.trim(),
+      intention: document.getElementById('intention').value.trim(),
+      shortBio: document.getElementById('shortBio').value.trim(),
+      pressRelease: document.getElementById('pressRelease').value.trim(),
+      epLink: document.getElementById('epLink').value.trim(),
+      contentLinks: document.getElementById('contentLinks').value.trim(),
+      technicalNotes: document.getElementById('technicalNotes').value.trim(),
+      attachments: [...document.getElementById('attachments').files].map(f => f.name).join(", ")
+    };
+  }
+
+  function buildSummary(){
+    const d = getFormData();
+    return `FICHE BAND — L’AGENCE L’ÉTIQUETTE
+
+Nom du band :
+${d.bandName || "-"}
+
+Courriel de contact :
+${d.contactEmail || "-"}
+
+Style musical :
+${d.style || "-"}
+
+Ville / région :
+${d.city || "-"}
+
+Intention principale :
+${d.intention || "-"}
+
+Membres :
+${d.members || "-"}
+
+Bio courte :
+${d.shortBio || "-"}
+
+Communiqué de presse :
+${d.pressRelease || "-"}
+
+EP / album / démo :
+${d.epLink || "-"}
+
+Liens vers les contenus :
+${d.contentLinks || "-"}
+
+Notes techniques / besoins :
+${d.technicalNotes || "-"}
+
+Pièces jointes préparées :
+${d.attachments || "Aucune pièce jointe sélectionnée"}
+
+---
+Document généré depuis la fiche band L’Étiquette.`;
+  }
+
+  function validateRequired(){
+    const d = getFormData();
+    if(!d.bandName || !d.contactEmail || !d.members || !d.intention || !d.shortBio){
+      statusBox.textContent = "Champs requis à compléter : nom du band, courriel, membres, intention et bio courte.";
+      return false;
+    }
+    return true;
+  }
+
+  photoInput?.addEventListener('change', () => {
+    const file = photoInput.files && photoInput.files[0];
+    if(!file){
+      photoDataUrl = "";
+      photoPreview.innerHTML = "Aperçu photo";
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = e => {
+      photoDataUrl = e.target.result;
+      photoPreview.innerHTML = `<img src="${photoDataUrl}" alt="Aperçu photo du band">`;
+      statusBox.textContent = "Photo ajoutée. Elle sera intégrée dans la fiche PDF.";
+    };
+    reader.readAsDataURL(file);
+  });
+
+  document.getElementById('previewBtn')?.addEventListener('click', () => {
+    const summary = buildSummary();
+    summaryBox.textContent = summary;
+    summaryBox.style.display = "block";
+    statusBox.textContent = "Aperçu de la fiche généré.";
+  });
+
+  document.getElementById('downloadPdfBtn')?.addEventListener('click', async () => {
+    if(!validateRequired()) return;
+
+    if(!window.jspdf || !window.jspdf.jsPDF){
+      statusBox.textContent = "Le générateur PDF n’a pas chargé. Vérifie la connexion Internet ou utilise le navigateur en ligne.";
+      return;
+    }
+
+    const d = getFormData();
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ unit:"pt", format:"letter" });
+
+    const margin = 44;
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    let y = margin;
+
+    function addTextBlock(title, text){
+      if(y > pageHeight - 90){
+        doc.addPage();
+        y = margin;
+      }
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(11);
+      doc.setTextColor(169, 25, 34);
+      doc.text(title, margin, y);
+      y += 16;
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(10);
+      doc.setTextColor(30, 30, 30);
+      const lines = doc.splitTextToSize(text || "-", pageWidth - margin * 2);
+      lines.forEach(line => {
+        if(y > pageHeight - 55){
+          doc.addPage();
+          y = margin;
+        }
+        doc.text(line, margin, y);
+        y += 14;
+      });
+      y += 12;
+    }
+
+    doc.setFillColor(5,5,5);
+    doc.rect(0,0,pageWidth,108,"F");
+    doc.setTextColor(243,234,216);
+    doc.setFont("helvetica","bold");
+    doc.setFontSize(20);
+    doc.text("FICHE BAND — L’AGENCE L’ÉTIQUETTE", margin, 46);
+    doc.setFontSize(10);
+    doc.setFont("helvetica","normal");
+    doc.text("Réseau artistique indépendant • Soutenir • Promouvoir • Propulser", margin, 68);
+
+    if(photoDataUrl){
+      try{
+        doc.addImage(photoDataUrl, "JPEG", pageWidth - 154, 24, 110, 70, undefined, "FAST");
+      }catch(e){
+        try{ doc.addImage(photoDataUrl, "PNG", pageWidth - 154, 24, 110, 70, undefined, "FAST"); }catch(err){}
+      }
+    }
+
+    y = 132;
+    addTextBlock("Nom du band", d.bandName);
+    addTextBlock("Courriel de contact", d.contactEmail);
+    addTextBlock("Style musical", d.style);
+    addTextBlock("Ville / région", d.city);
+    addTextBlock("Intention principale", d.intention);
+    addTextBlock("Membres", d.members);
+    addTextBlock("Bio courte", d.shortBio);
+    addTextBlock("Communiqué de presse", d.pressRelease);
+    addTextBlock("EP / album / démo", d.epLink);
+    addTextBlock("Liens vers les contenus", d.contentLinks);
+    addTextBlock("Notes techniques / besoins", d.technicalNotes);
+    addTextBlock("Pièces jointes préparées", d.attachments || "Aucune pièce jointe sélectionnée");
+
+    doc.setFontSize(8);
+    doc.setTextColor(120,120,120);
+    doc.text("Document généré depuis la fiche band L’Étiquette.", margin, pageHeight - 26);
+
+    const fileName = `fiche-letiquette-${cleanFileName(d.bandName)}.pdf`;
+    doc.save(fileName);
+    statusBox.textContent = `PDF généré : ${fileName}`;
+  });
+
+  document.getElementById('emailBtn')?.addEventListener('click', () => {
+    if(!validateRequired()) return;
+
+    const d = getFormData();
+    const subject = encodeURIComponent(`Fiche band L’Étiquette — ${d.bandName}`);
+    const body = encodeURIComponent(
+      buildSummary() +
+      "\n\nIMPORTANT : joindre au courriel le PDF téléchargé, la photo de profil et les fichiers sélectionnés dans le formulaire."
+    );
+
+    window.location.href = `mailto:agenceletiquette@gmail.com?subject=${subject}&body=${body}`;
+    statusBox.textContent = "Le courriel est préparé. Joins le PDF téléchargé, la photo et les fichiers avant l’envoi.";
+  });
+
+  document.getElementById('resetBtn')?.addEventListener('click', () => {
+    photoDataUrl = "";
+    photoPreview.innerHTML = "Aperçu photo";
+    summaryBox.style.display = "none";
+    statusBox.textContent = "Formulaire effacé.";
+  });
+
 </script>
 
 </body>
